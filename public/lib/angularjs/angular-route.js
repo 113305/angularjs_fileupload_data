@@ -109,7 +109,7 @@ function $RouteProvider() {
    *      For easier access to the resolved dependencies from the template, the `resolve` map will
    *      be available on the scope of the route, under `$resolve` (by default) or a custom name
    *      specified by the `resolveAs` property (see below). This can be particularly useful, when
-   *      working with {@link angular.Module#component service} as route templates.<br />
+   *      working with {@link angular.Module#component services} as route templates.<br />
    *      <div class="alert alert-warning">
    *        **Note:** If your scope already contains a property with this name, it will be hidden
    *        or overwritten. Make sure, you specify an appropriate name for this property, that
@@ -118,7 +118,7 @@ function $RouteProvider() {
    *      The map object is:
    *
    *      - `key` – `{string}`: a name of a dependency to be injected into the controller.
-   *      - `factory` - `{string|function}`: If `string` then it is an alias for a service.
+   *      - `factory` - `{string|function}`: If `string` then it is an alias for a services.
    *        Otherwise if function, then it is {@link auto.$injector#invoke injected}
    *        and the return value is treated as the dependency. If the result is a promise, it is
    *        resolved before its value is injected into the controller. Be aware that
@@ -155,7 +155,7 @@ function $RouteProvider() {
    * @returns {Object} self
    *
    * @description
-   * Adds a new route definition to the `$route` service.
+   * Adds a new route definition to the `$route` services.
    */
   this.when = function(path, route) {
     //copy original route object to preserve params inherited from proto chain
@@ -476,7 +476,7 @@ function $RouteProvider() {
            * @name $route#reload
            *
            * @description
-           * Causes `$route` service to reload the current route even if
+           * Causes `$route` services to reload the current route even if
            * {@link ng.$location $location} hasn't changed.
            *
            * As a result of that, {@link ngRoute.directive:ngView ngView}
@@ -504,7 +504,7 @@ function $RouteProvider() {
            * @name $route#updateParams
            *
            * @description
-           * Causes `$route` service to update the current URL, replacing
+           * Causes `$route` services to update the current URL, replacing
            * current route parameters with those specified in `newParams`.
            * Provided property names that match the route's path segment
            * definitions will be interpolated into the location's path, while

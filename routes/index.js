@@ -7,7 +7,7 @@ var s3Config = require('../config/s3config');
 var async = require('async');
 var fs = require('fs');
 var mime = require('mime');
-var articleData = require('../mockData/mockData.json');
+var articleData = require('../mockData/mockData.json');//mockData.json을 읽어서 메모리함 db라고생각함 실제로는 디비이용하면됨
 
 router.post('/articles', function(req, res, next) {
 

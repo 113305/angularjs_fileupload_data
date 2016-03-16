@@ -16,6 +16,8 @@ form .progress {
     border: 3px groove #CCC;
 }
 
+/*progress > div는 자식 -> progress의 바로밑에 붙어있는 div녀석*/
+/*progress div는 자손 -> progress의 아래에있는 모든 div*/
 .progress div {
     font-size: smaller;
     background: orange;

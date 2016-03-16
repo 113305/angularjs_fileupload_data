@@ -194,7 +194,7 @@
             } else {
                 // If the current-page attribute was not set, we'll make our own.
                 // Replace any non-alphanumeric characters which might confuse
-                // the $parse service and give unexpected results.
+                // the $parse services and give unexpected results.
                 // See https://github.com/michaelbromley/angularUtils/issues/233
                 var defaultCurrentPage = (paginationId + '__currentPage').replace(/\W/g, '_');
                 scope[defaultCurrentPage] = 1;
@@ -235,7 +235,7 @@
             link: dirPaginationControlsLinkFn
         };
 
-        // We need to check the paginationTemplate service to see whether a template path or
+        // We need to check the paginationTemplate services to see whether a template path or
         // string has been specified, and add the `template` or `templateUrl` property to
         // the DDO as appropriate. The order of priority to decide which template to use is
         // (highest priority first):
@@ -527,7 +527,7 @@
     }
 
     /**
-     * This service allows the various parts of the module to communicate and stay in sync.
+     * This services allows the various parts of the module to communicate and stay in sync.
      */
     function paginationService() {
 

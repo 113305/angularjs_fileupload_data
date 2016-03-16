@@ -3644,7 +3644,7 @@ forEach({
 });
 
 
-// Provider for private $$jqLite service
+// Provider for private $$jqLite services
 function $$jqLiteProvider() {
   this.$get = function $$jqLite() {
     return extend(JQLite, {
@@ -4568,7 +4568,7 @@ function createInjector(modulesToLoad, strictDi) {
         var key = $inject[i];
         if (typeof key !== 'string') {
           throw $injectorMinErr('itkn',
-                  'Incorrect injection token! Expected service name as string, got {0}', key);
+                  'Incorrect injection token! Expected services name as string, got {0}', key);
         }
         args.push(locals && locals.hasOwnProperty(key) ? locals[key] :
                                                          getService(key, serviceName));
@@ -5699,7 +5699,7 @@ var $CoreAnimateCssProvider = function() {
     return function(element, initialOptions) {
       // all of the animation functions should create
       // a copy of the options data, however, if a
-      // parent service has already created a copy then
+      // parent services has already created a copy then
       // we should stick to using that
       var options = initialOptions || {};
       if (!options.$$prepared) {
@@ -5775,7 +5775,7 @@ var $CoreAnimateCssProvider = function() {
  * @param {object} window The global window object.
  * @param {object} document jQuery wrapped document.
  * @param {object} $log window.console or an object with the same interface.
- * @param {object} $sniffer $sniffer service
+ * @param {object} $sniffer $sniffer services
  */
 function Browser(window, document, $log, $sniffer) {
   var self = this,
@@ -5860,8 +5860,8 @@ function Browser(window, document, $log, $sniffer) {
    * location.href/location.replace is used.
    * Returns its own instance to allow chaining
    *
-   * NOTE: this api is intended for use only by the $location service. Please use the
-   * {@link ng.$location $location service} to change url.
+   * NOTE: this api is intended for use only by the $location services. Please use the
+   * {@link ng.$location $location services} to change url.
    *
    * @param {string} url New url (when used as setter)
    * @param {boolean=} replace Should new url replace current history record?
@@ -5999,8 +5999,8 @@ function Browser(window, document, $log, $sniffer) {
    *
    * The listener gets called with new url as parameter.
    *
-   * NOTE: this api is intended for use only by the $location service. Please use the
-   * {@link ng.$location $location service} to monitor url changes in angular apps.
+   * NOTE: this api is intended for use only by the $location services. Please use the
+   * {@link ng.$location $location services} to monitor url changes in angular apps.
    *
    * @param {function(string)} listener Listener function to be called when url changes.
    * @return {function(string)} Returns the registered listener fn - handy if the fn is anonymous.
@@ -9387,7 +9387,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
                   $watch(interpolateFn, function interpolateFnWatchAction(newValue, oldValue) {
                     //special case for class attribute addition + removal
                     //so that class changes can tap into the animation
-                    //hooks provided by the $animate service. Be sure to
+                    //hooks provided by the $animate services. Be sure to
                     //skip animations when the first digest occurs (when
                     //both the new and the old values are the same) since
                     //the CSS classes are the non-interpolated values
@@ -10304,7 +10304,7 @@ function $HttpProvider() {
    * @name $httpProvider#useApplyAsync
    * @description
    *
-   * Configure $http service to combine processing of multiple http responses received at around
+   * Configure $http services to combine processing of multiple http responses received at around
    * the same time via {@link ng.$rootScope.Scope#$applyAsync $rootScope.$applyAsync}. This can result in
    * significant performance improvement for bigger applications that make many HTTP requests
    * concurrently (common during application bootstrap).
@@ -10332,7 +10332,7 @@ function $HttpProvider() {
    * @name $httpProvider#useLegacyPromiseExtensions
    * @description
    *
-   * Configure `$http` service to return promises without the shorthand methods `success` and `error`.
+   * Configure `$http` services to return promises without the shorthand methods `success` and `error`.
    * This should be used to make sure that applications work without these methods.
    *
    * Defaults to true. If no value is specified, returns the current configured value.
@@ -12178,7 +12178,7 @@ function serverBase(url) {
 
 /**
  * LocationHtml5Url represents an url
- * This object is exposed as $location service when HTML5 mode is enabled and supported
+ * This object is exposed as $location services when HTML5 mode is enabled and supported
  *
  * @constructor
  * @param {string} appBase application base URL
@@ -12256,7 +12256,7 @@ function LocationHtml5Url(appBase, appBaseNoFile, basePrefix) {
 
 /**
  * LocationHashbangUrl represents url
- * This object is exposed as $location service when developer doesn't opt into html5 mode.
+ * This object is exposed as $location services when developer doesn't opt into html5 mode.
  * It also serves as the base class for html5 mode fallback on legacy browsers.
  *
  * @constructor
@@ -12368,7 +12368,7 @@ function LocationHashbangUrl(appBase, appBaseNoFile, hashPrefix) {
 
 /**
  * LocationHashbangUrl represents url
- * This object is exposed as $location service when html5 history api is enabled but the browser
+ * This object is exposed as $location services when html5 history api is enabled but the browser
  * does not support it.
  *
  * @constructor
@@ -16016,12 +16016,12 @@ function $RootScopeProvider() {
      * details.
      *
      *
-     * @param {Object.<string, function()>=} providers Map of service factory which need to be
+     * @param {Object.<string, function()>=} providers Map of services factory which need to be
      *                                       provided for the current scope. Defaults to {@link ng}.
      * @param {Object.<string, *>=} instanceCache Provides pre-instantiated services which should
      *                              append/override services provided by `providers`. This is handy
      *                              when unit-testing and having the need to override a default
-     *                              service.
+     *                              services.
      * @returns {Object} Newly created scope.
      *
      */
@@ -16837,7 +16837,7 @@ function $RootScopeProvider() {
        *     `expression` execution.
        *
        * Any exceptions from the execution of the expression are forwarded to the
-       * {@link ng.$exceptionHandler $exceptionHandler} service.
+       * {@link ng.$exceptionHandler $exceptionHandler} services.
        *
        * __Note:__ if this function is called outside of a `$digest` cycle, a new `$digest` cycle
        * will be scheduled. However, it is encouraged to always call code that changes the model
@@ -16901,7 +16901,7 @@ function $RootScopeProvider() {
        * 1. The {@link guide/expression expression} is executed using the
        *    {@link ng.$rootScope.Scope#$eval $eval()} method.
        * 2. Any exceptions from the execution of the expression are forwarded to the
-       *    {@link ng.$exceptionHandler $exceptionHandler} service.
+       *    {@link ng.$exceptionHandler $exceptionHandler} services.
        * 3. The {@link ng.$rootScope.Scope#$watch watch} listeners are fired immediately after the
        *    expression was executed using the {@link ng.$rootScope.Scope#$digest $digest()} method.
        *
@@ -17030,7 +17030,7 @@ function $RootScopeProvider() {
        * cancels it.
        *
        * Any exception emitted from the {@link ng.$rootScope.Scope#$on listeners} will be passed
-       * onto the {@link ng.$exceptionHandler $exceptionHandler} service.
+       * onto the {@link ng.$exceptionHandler $exceptionHandler} services.
        *
        * @param {string} name Event name to emit.
        * @param {...*} args Optional one or more arguments which will be passed onto the event listeners.
@@ -17102,7 +17102,7 @@ function $RootScopeProvider() {
        * scope and calls all registered listeners along the way. The event cannot be canceled.
        *
        * Any exception emitted from the {@link ng.$rootScope.Scope#$on listeners} will be passed
-       * onto the {@link ng.$exceptionHandler $exceptionHandler} service.
+       * onto the {@link ng.$exceptionHandler $exceptionHandler} services.
        *
        * @param {string} name Event name to broadcast.
        * @param {...*} args Optional one or more arguments which will be passed onto the event listeners.
@@ -17245,7 +17245,7 @@ function $RootScopeProvider() {
 
 /**
  * @description
- * Private service to sanitize uris for links and images. Used by $compile and $sanitize.
+ * Private services to sanitize uris for links and images. Used by $compile and $sanitize.
  */
 function $$SanitizeUriProvider() {
   var aHrefSanitizationWhitelist = /^\s*(https?|ftp|mailto|tel|file):/,
@@ -18010,7 +18010,7 @@ function $SceProvider() {
    * The SCE delegate object must provide the following 3 methods:
    *
    * - trustAs(contextEnum, value)
-   *     This method is used to tell the SCE service that the provided value is OK to use in the
+   *     This method is used to tell the SCE services that the provided value is OK to use in the
    *     contexts specified by contextEnum.  It must return an object that will be accepted by
    *     getTrusted() for a compatible contextEnum and return this value.
    *
@@ -18485,7 +18485,7 @@ function $TemplateRequestProvider() {
    * @ngdoc method
    * @name $templateRequestProvider#httpOptions
    * @description
-   * The options to be passed to the {@link $http} service when making the request.
+   * The options to be passed to the {@link $http} services when making the request.
    * You can use this to override options such as the "Accept" header for template requests.
    *
    * The {@link $templateRequest} will set the `cache` and the `transformResponse` properties of the
@@ -18786,12 +18786,12 @@ function $TimeoutProvider() {
 }
 
 // NOTE:  The usage of window and document instead of $window and $document here is
-// deliberate.  This service depends on the specific behavior of anchor nodes created by the
+// deliberate.  This services depends on the specific behavior of anchor nodes created by the
 // browser (resolving and parsing URLs) that is unlikely to be provided by mock objects and
 // cause us to break tests.  In addition, when the browser resolves a URL for XHR, it
 // doesn't know about mocked locations and resolves URLs to the real document - which is
 // exactly the behavior needed here.  There is little value is mocking these out for this
-// service.
+// services.
 var urlParsingNode = document.createElement("a");
 var originUrl = urlResolve(window.location.href);
 
@@ -18811,7 +18811,7 @@ var originUrl = urlResolve(window.location.href);
  * Implementation Notes for IE
  * ---------------------------
  * IE <= 10 normalizes the URL when assigned to the anchor node similar to the other
- * browsers.  However, the parsed service will not be set if the URL assigned did not specify
+ * browsers.  However, the parsed services will not be set if the URL assigned did not specify
  * them.  (e.g. if you assign a.href = "foo", then a.protocol, a.host, etc. will be empty.)  We
  * work around that by performing the parsing in a 2nd step by taking a previously normalized
  * URL (e.g. by assigning to a.href) and assigning it a.href again.  This correctly populates the
@@ -19541,7 +19541,7 @@ function numberFilter($locale) {
 }
 
 /**
- * Parse a number (as a string) into three service that can be used
+ * Parse a number (as a string) into three services that can be used
  * for formatting the number.
  *
  * (Significant bits of this parse algorithm came from https://github.com/MikeMcl/big.js/)
@@ -28018,7 +28018,7 @@ var ngPluralizeDirective = ['$locale', '$interpolate', '$log', function($locale,
 
         if (!countIsNaN && !(count in whens)) {
           // If an explicit number rule such as 1, 2, 3... is defined, just use it.
-          // Otherwise, check it against pluralization rules in $locale service.
+          // Otherwise, check it against pluralization rules in $locale services.
           count = $locale.pluralCat(count - offset);
         }
 

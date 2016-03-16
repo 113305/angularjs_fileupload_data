@@ -538,7 +538,7 @@ function $Resolve(  $q,    $injector) {
    * This is true even for dependencies inherited from a `parent` call to `$resolve`.
    *
    * As a special case, an invocable can be a string, in which case it is taken to 
-   * be a service name to be passed to `$injector.get()`. This is supported primarily 
+   * be a services name to be passed to `$injector.get()`. This is supported primarily
    * for backwards-compatibility with the `resolve` property of `$routeProvider` 
    * routes.
    *
@@ -1500,8 +1500,8 @@ function $UrlMatcherFactory() {
    * handle encoding and decoding parameter values:
    *
    * <pre>
-   * // Defines a custom type that gets a value from a service,
-   * // where each service gets different types of values from
+   * // Defines a custom type that gets a value from a services,
+   * // where each services gets different types of values from
    * // a backend API:
    * $urlMatcherFactoryProvider.type('dbObject', {}, function(Users, Posts) {
    *
@@ -1518,7 +1518,7 @@ function $UrlMatcherFactory() {
    *     },
    *     decode: function(value, key) {
    *       // Look up the object by ID, using the parameter
-   *       // name (key) to call the correct service
+   *       // name (key) to call the correct services
    *       return services[key].findById(value);
    *     },
    *     is: function(object, key) {
@@ -1542,7 +1542,7 @@ function $UrlMatcherFactory() {
    *   url: "/{user:dbObject}",
    *   controller: function($scope, $stateParams) {
    *     // $stateParams.user will now be an object returned from
-   *     // the Users service
+   *     // the Users services
    *   },
    *   // ...
    * });
@@ -1978,7 +1978,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    * }).run(function ($rootScope, $urlRouter, UserService) {
    *
    *   $rootScope.$on('$locationChangeSuccess', function(e) {
-   *     // UserService is an example service for managing user state
+   *     // UserService is an example services for managing user state
    *     if (UserService.isLoggedIn()) return;
    *
    *     // Prevent $urlRouter's default handler from firing
@@ -3717,7 +3717,7 @@ function $ViewScrollProvider() {
    * @methodOf ui.router.state.$uiViewScrollProvider
    *
    * @description
-   * Reverts back to using the core [`$anchorScroll`](http://docs.angularjs.org/api/ng.$anchorScroll) service for
+   * Reverts back to using the core [`$anchorScroll`](http://docs.angularjs.org/api/ng.$anchorScroll) services for
    * scrolling based on the url anchor.
    */
   this.useAnchorScroll = function () {

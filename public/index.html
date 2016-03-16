@@ -6,24 +6,22 @@
   <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-theme.css">
   <link rel="stylesheet" href="css/styles.css">
-  <script src="lib/angularjs/angular.js"></script>
-  <script src="lib/angularjs/angular-route.js"></script>
-  <script src="lib/angularjs/angular-resource.js"></script>
-  <script src="lib/angularjs/dirPagination.js"></script>
-  <script src="lib/angularjs/ng-file-upload.js"></script>
-  <script src="app/controllers/uploadCtrl.js"></script>
 </head>
 <body ng-app="fileUploadApp" ng-controller="uploadCtrl">
   <form name="articleForm">
     <fieldset>
       <legend>기사 송부를 위하 폼</legend>
+      <!--form안에 name의미없음 폼을전송하는것이아니고 폼객체를만들어서 전송하기때문에
+      핵심은 ng-model -->
       제목:
       <input type="text" name="title" ng-model="title" size="30" required>
+      <!--뷰에 required에러가 존재하면 required를 보여줌-->
       <i ng-show="articleForm.title.$error.required">*required</i><br>
       내용:
       <textarea name="content" rows="10" cols="32" ng-model="content" required></textarea>
       <i ng-show="articleForm.content.$error.required">*required</i><br>
       사진:
+      <!--ngf-select : ngf파일에서 제공하는 (ngf-max-size , ngf-model-invalid 커스텀디렉티브)-->
       <input type="file" ngf-select ng-model="photoFile" name="photo"
              accept="image/*" ngf-max-size="2MB" required
              ngf-model-invalid="errorFile">
@@ -31,14 +29,24 @@
       <i ng-show="articleForm.photo.$error.maxSize">허용 가능한 파일의 크기를 초과했습니다 -
           {{errorFile.size / 1000000|number:1}}MB: 최대 2M</i>
       <img ng-show="articleForm.photo.$valid" ngf-thumbnail="photoFile" class="thumb">
-      <button ng-click="photoFile = null" ng-show="photoFile">
+      <!--삭제버튼을누르면 scope객체에 photoFile정보를 null로바꿔준다-->
+      <button ng-click="deletePhoto('photoFile')" ng-show="photoFile">
         삭제
       </button>
       <br>
-      <button ng-disabled="!articleForm.$valid" ng-click="uploadPic(photoFile)">
+      <!--articleForm의 리콰이어가다 충족이되면(vaild하면) inabled된다-->
+      <!--scope객체 photoFile을 넘겨준것 -->
+      <!--formdata객체를 만들어서 서버로 전송-->
+      <button ng-disabled="!articleForm.$valid" ng-click="uploadPhoto(photoFile)">
         전송
       </button>
+      <button ng-disabled="!articleForm.$valid" ng-click="reset()">
+        초기화
+      </button>
       <span class="progress" ng-show="photoFile.progress >= 0">
+        <!--css를 변화시켜서 진행하는 것처럼 보여줌-->
+        <!--ng-bind는 expression쓰는 것과 같음 아래두개 같은결과-->
+        <!--<div style="width:{{photoFile.progress}}%">{{photoFile.progress}}%</div>-->
         <div style="width:{{photoFile.progress}}%" ng-bind="photoFile.progress + '%'"></div>
       </span>
       <span ng-show="photoFile.result">
@@ -50,5 +58,11 @@
     </fieldset>
     <br>
   </form>
+  <script src="lib/angularjs/angular.js"></script>
+  <script src="lib/angularjs/angular-route.js"></script>
+  <script src="lib/angularjs/angular-resource.js"></script>
+  <script src="lib/angularjs/dirPagination.js">//종류가 두가지있음 1.서버가처리 2.클라이언트가 처리</script>
+  <script src="lib/angularjs/ng-file-upload.js">//파일업로드를 처리해주는 라이브러리 거의대부분 이것을 씀</script>
+  <script src="app/controllers/uploadCtrl.js"></script>
 </body>
 </html>
